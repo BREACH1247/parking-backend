@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parking|Vehicle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #ad1d1d;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1>Parking|Vehicle</h1>
+<table>
+    <tr>
+        <td><a href="/" class="button">/</a></td>
+        <td><a href="/auth" class="button">Authentication</a></td>
+        <td><a href="/auth/logout" class="button">Logout</a></td>
+        <td><a href="/vehicle" class="button">Vehicle</a></td>
+        <td><a href="/log" class="button">Log</a></td>
+    </tr>
+</table>
+<form action="/vehicle/add/" method="post">
+    <fieldset>
+        <legend>Add Vehicle</legend>
+        <label for="vehicle-number">Vehicle Number:</label><br/>
+        <input type="text" id="vehicle-number" name="vehicleNumber" required><br/><br/>
+        <label for="parking-spot-id">Parking Spot:</label><br/>
+        <select id="parking-spot-id" name="parkingSpotId">
+            <% for(let p of parkingSpots){ %>
+                <option value="<%= p.parkingSpotId %>"><%= p.name %></option>
+            <% } %>
+        </select><br/><br/>
+        <input type="submit" value="Add Vehicle">
+    </fieldset>
+</form>
+<table>
+    <tr>
+        <th>vehicleId</th>
+        <th>vehicleNumber</th>
+        <th>userId</th>
+        <th></th>
+    </tr>
+    <% for(v of vehicle){ %>
+        <tr>
+            <td><%= v.vehicleId %></td>
+            <td><%= v.vehicleNumber %></td>
+            <td><%= v.userId %></td>
+            <td>
+                <form action="/vehicle/delete" method="post">
+                    <input type="hidden" name="vehicleId" value="<%= v.vehicleId %>">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    <% } %>
+</table>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parking|Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #ad1d1d;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1>Parking|Log</h1>
+<table>
+    <tr>
+        <td><a class="button" href="/">/</a></td>
+        <td><a class="button" href="/auth">Authentication</a></td>
+        <td><a class="button" href="/auth/logout">Logout</a></td>
+        <td><a class="button" href="/vehicle">Vehicle</a></td>
+        <td><a class="button" href="/log">Log</a></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>USERID</th>
+        <th>VEHICLEID</th>
+        <th>PARKINGSPOTID</th>
+        <th>CHECKINTIME</th>
+        <th>CHECKOUTTIME</th>
+        <th>DURATION</th>
+    </tr>
+    <% for(l of log){ %>
+    <tr>
+        <td><%= l.userId %></td>
+        <td><%= l.vehicleId %></td>
+        <td><%= l.parkingSpotId %></td>
+        <td><%= l.checkInTime %></td>
+        <td><%= l.checkOutTime %></td>
+        <% if(l.duration){ %>
+        <td>
+            <%= new Date(l.duration).getUTCHours() %>:<%= new Date(l.duration).getUTCMinutes() %>:<%= new Date(l.duration).getUTCSeconds() %>
+        </td>
+        <% } %>
+    </tr>
+    <% } %>
+</table>
+</body>
+<script>
+
+</script>
+</html>

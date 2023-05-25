@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parking|Home</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-size: cover;
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #ad1d1d;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+        }
+
+        h3 {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Parking|Home</h1>
+    <table>
+        <tr>
+            <td><a href="/" class="button">/</a></td>
+            <td><a href="/auth" class="button">Authentication</a></td>
+            <td><a href="/auth/logout" class="button">Logout</a></td>
+            <td><a href="/vehicle" class="button">Vehicle</a></td>
+            <td><a href="/log" class="button">Log</a></td>
+        </tr>
+    </table>
+    <% if (locals.user) { %>
+        <h3>Welcome <%= user.name %>!</h3>
+    <% } else { %>
+        <h3>Logged out!</h3>
+    <% } %>
+</body>
+</html>
